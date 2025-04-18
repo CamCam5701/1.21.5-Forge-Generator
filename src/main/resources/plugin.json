@@ -1,14 +1,13 @@
 {
-  "id": "demo_plugin",
+  "id": "2025.1-1.21.5-Forge",
   "supportedversions": [
-    202400199999,
-    2024001
+    2025113416,
   ],
   "weight": 0,
   "info": {
-    "name": "MCreator demo plugin",
-    "version": "1.0",
-    "description": "Demo plugin to demonstrate a typical plugin structure",
-    "author": "Pylo"
+    "name": "1.21.5 Forge Plugin",
+    "version": "0.0 IN-DEV",
+    "description": "This plugin adds support for Forge 1.21.5 for 2025.1 (This Plugin is my first ever plugin and probably is very buggy and may cause many error)",
+    "author": "CamCam5701"
   }
 }

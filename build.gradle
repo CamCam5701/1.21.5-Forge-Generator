@@ -5,13 +5,13 @@ plugins {
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 tasks.jar {
-    archiveFileName.set("demo-plugin.zip")
+    archiveFileName.set("2025.1-1.21.5-Forge.zip")
 }
 
 tasks.register('runMCreatorWithPlugin', JavaExec) {
     dependsOn jar
 
-    environment("MCREATOR_PLUGINS_FOLDER", file("./build/libs"))
+    environment("MCREATOR_PLUGINS_FOLDER", file("C://Program Files/Pylo/MCreator"))
     environment("MCREATOR_PLUGINS_DEV", "")
 
     jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'

@@ -20,7 +20,7 @@ tasks.register('runMCreatorWithPlugin', JavaExec) {
 
     main = 'net.mcreator.Launcher'
 
-    workingDir = mcreator_path
+    workingDir = "C:\\Program Files\\Pylo\\MCreator\\plugins"
 }
 
 subprojects { subproject ->
@@ -31,7 +31,7 @@ subprojects { subproject ->
             environment("MCREATOR_PLUGINS_FOLDER", new File(rootProject.projectDir, "/build/libs"))
             environment("MCREATOR_PLUGINS_DEV", "")
 
-            workingDir = mcreator_path
+            workingDir = "C:\\Program Files\\Pylo\\MCreator\\plugins"
         }
     }
 }

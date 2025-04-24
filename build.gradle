@@ -1,37 +1,50 @@
 plugins {
-    id "java"
+    id 'java'
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+group = 'com.ignore.plugin'
+version = '2025.1'
 
-tasks.jar {
-    archiveFileName.set("2025.1-1.21.5-Forge.zip")
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+jar {
+    archiveFileName.set("2025.1-1.21.5-Forge.jar")
+    manifest {
+        attributes(
+                'Implementation-Title': '1.21.5 Forge Generator',
+                'Implementation-Version': 2025.1
+        )
+    }
 }
 
 tasks.register('runMCreatorWithPlugin', JavaExec) {
     dependsOn jar
 
-    environment("MCREATOR_PLUGINS_FOLDER", file("./build/libs"))
-    environment("MCREATOR_PLUGINS_DEV", "")
+    environment("MCREATOR_PLUGINS_FOLDER", file("$buildDir/libs").absolutePath)
+    environment("MCREATOR_PLUGINS_DEV", "true")
 
     jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
 
-    classpath = project(':MCreator').sourceSets.main.runtimeClasspath
+    classpath = files(
+            "C:/Program Files/Pylo/MCreator/MCreator.jar",
+            "$buildDir/libs/${jar.archiveFileName.get()}"
+    )
 
-    main = 'net.mcreator.Launcher'
-
-    workingDir = "C:\\Program Files\\Pylo\\MCreator\\plugins"
+    mainClass.set('net.mcreator.Launcher')
+    workingDir = file("C:/Program Files/Pylo/MCreator")
 }
 
 subprojects { subproject ->
-    subproject.plugins.withType(JavaPlugin) {
-        test {
-            dependsOn rootProject.jar
+    subproject.plugins.withType(JavaPlugin).configureEach {
+        tasks.withType(Test).configureEach {
+            dependsOn rootProject.tasks.named('jar')
 
             environment("MCREATOR_PLUGINS_FOLDER", new File(rootProject.projectDir, "/build/libs"))
-            environment("MCREATOR_PLUGINS_DEV", "")
+            environment("MCREATOR_PLUGINS_DEV", "true")
 
-            workingDir = "C:\\Program Files\\Pylo\\MCreator\\plugins"
+            workingDir = file("C:/Program Files/Pylo/MCreator")
         }
     }
 }

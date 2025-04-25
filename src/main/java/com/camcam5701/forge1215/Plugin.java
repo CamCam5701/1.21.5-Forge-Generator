@@ -7,7 +7,7 @@ public class Forge1215Generator implements Generator {
 
     @Override
     public void start(GeneratorSetup setup) {
-        setup.getGenerator().setBuiltin(false); // ✅ This is the correct way!
+        setup.getGenerator().setBuiltin(false);
     }
 
     @Override
